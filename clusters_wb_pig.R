@@ -40,38 +40,108 @@ clust <- data_WLinterface[ ,3:9]
 
 #We apply three different statistical methods for selecting the number of 
 #clusters using the 'fviz_nclust' function (consult 'help(fviz_nclust)' for 
-#more information on the classification methods: 'silhouette,' 'wss,' and '
+#more information on the classification methods: 'silhouette,' 'elbow,' and '
 #gap_stat.' To apply this function, we set k.max=10 to avoid a large number of 
 #clusters that could be uninformative
 fviz_nbclust(clust, kmeans, method = "silhouette", k.max = 10)
-#Optimal number of clusters obtained = 2
+#Optimal number of clusters obtained with silhouette method = 2
 
 fviz_nbclust(clust, kmeans, method = "wss", k.max = 10)
-#Optimal number of clusters obtained = it is not conclusive
+#Optimal number of clusters obtained with elbow method = it is not conclusive
 
 fviz_nbclust(clust, kmeans, method = "gap_stat", k.max = 10)
-#Optimal number of clusters obtained = 1
+#Optimal number of clusters obtained with gap method = 1
 
 #The number of clusters determined by each method does not converge; each method
-#proposes a different optimal number of clusters. Therefore, we make a division 
-#that we consider optimal for our data, taking into account the biological sense
-#of the variables and the interpretation of the results so that their 
-#application and visualization are practical for management.
+#proposes a different optimal number of clusters. Therefore, we made several 
+#divisions until we found a division that we consider optimal for our data, 
+#taking into account the biological sense of the variables and the 
+#interpretation of the results so that their application and visualization 
+#are practical for management.
 
-#We use the 'kmeans()' function to cluster the data into 6 clusters
+#We use the 'kmeans()' function to cluster the data into 2, 4, 6 and 8 clusters
+cl_2 <- kmeans(clust, centers = 2)
+cl_4 <- kmeans(clust, centers = 4)
 cl_6 <- kmeans(clust, centers = 6)
+cl_8 <- kmeans(clust, centers = 8)
 
 #We associate each cell with its assigned cluster after applying the 'kmeans()' 
 #function.
-clust_wb_pig <- cbind(data_WLinterface, cl_6$cluster)
+clust_wb_pig <- cbind(data_WLinterface, cl_2$cluster)
+clust_wb_pig <- cbind(clust_wb_pig, cl_4$cluster)
+clust_wb_pig <- cbind(clust_wb_pig, cl_6$cluster)
+clust_wb_pig <- cbind(clust_wb_pig, cl_8$cluster)
 
 #We rename the column that contains the number of the cluster to which each cell
 # belongs as 'cluster'
-names(clust_wb_pig)[11] <- 'cluster'
+names(clust_wb_pig)[11] <- 'clust_2'
+clust_wb_pig$clust_2 <- as.factor(clust_wb_pig$clust_2)
+names(clust_wb_pig)[12] <- 'clust_4'
+clust_wb_pig$clust_4 <- as.factor(clust_wb_pig$clust_4)
+names(clust_wb_pig)[13] <- 'clust_6'
+clust_wb_pig$clust_6 <- as.factor(clust_wb_pig$clust_6)
+names(clust_wb_pig)[14] <- 'clust_8'
+clust_wb_pig$clust_8 <- as.factor(clust_wb_pig$clust_8)
 
 #Finally we characterize the clusters based on the variables they group using 
-#boxplots
-boxplot(jab~cluster, data=clust_wb_pig)
-boxplot(int~cluster, data=clust_wb_pig)
-boxplot(ext~cluster, data=clust_wb_pig)
-boxplot(red~cluster, data=clust_wb_pig)
+#boxplots and compare between different numbers of clusters
+library(gridExtra)
+library(ggplot2)
+#Boxplots when we group data in 2 clusters
+bp1 <- ggplot(clust_wb_pig, aes(x = clust_2, y = jab)) + geom_boxplot() +  
+  labs(title = "Clusters = 2", x = "Clusters", 
+       y = "Wild boar")
+bp2 <- ggplot(clust_wb_pig, aes(x = clust_2, y = jab_in)) +   geom_boxplot() +   
+  labs(title = "Clusters = 2", x = "Clusters", 
+       y = "Wild boar*intensive pig farms")
+bp3 <- ggplot(clust_wb_pig, aes(x = clust_2, y = jab_re)) + geom_boxplot() +  
+  labs(title = "Clusters = 2", x = "Clusters", 
+       y = "Wild boar*small pig farms")
+bp4 <- ggplot(clust_wb_pig, aes(x = clust_2, y = jab_ex)) +   geom_boxplot() +   
+  labs(title = "Clusters = 2", x = "Clusters", 
+       y = "Wild boar*extensive pig farms")
+
+#Boxplots when we group data in 2 clusters
+bp5 <- ggplot(clust_wb_pig, aes(x = clust_4, y = jab)) +   geom_boxplot() +   
+  labs(title = "Clusters = 4", x = "Clusters", 
+       y = "Wild boar")
+bp6 <- ggplot(clust_wb_pig, aes(x = clust_4, y = jab_in)) +   geom_boxplot() +   
+  labs(title = "Clusters = 4", x = "Clusters", 
+       y = "Wild boar*intensive pig farms")
+bp7 <- ggplot(clust_wb_pig, aes(x = clust_4, y = jab_re)) +   geom_boxplot() +   
+  labs(title = "Clusters = 4", x = "Clusters", 
+       y = "Wild boar*small pig farms")
+bp8 <- ggplot(clust_wb_pig, aes(x = clust_4, y = jab_ex)) +   geom_boxplot() +   
+  labs(title = "Clusters = 4", x = "Clusters", 
+       y = "Wild boar*extensive pig farms")
+
+#Boxplots when we group data in 2 clusters
+bp9 <- ggplot(clust_wb_pig, aes(x = clust_6, y = jab)) +   geom_boxplot() +   
+  labs(title = "Clusters = 6", x = "Clusters", 
+       y = "Wild boar")
+bp10 <- ggplot(clust_wb_pig, aes(x = clust_6, y = jab_in)) +   geom_boxplot() +   
+  labs(title = "Clusters = 6", x = "Clusters", 
+       y = "Wild boar*intensive pig farms")
+bp11 <- ggplot(clust_wb_pig, aes(x = clust_6, y = jab_re)) +   geom_boxplot() +   
+  labs(title = "Clusters = 6", x = "Clusters", 
+       y = "Wild boar*small pig farms")
+bp12 <- ggplot(clust_wb_pig, aes(x = clust_6, y = jab_ex)) +   geom_boxplot() +   
+  labs(title = "Clusters = 6", x = "Clusters", 
+       y = "Wild boar*extensive pig farms")
+
+#Boxplots when we group data in 2 clusters
+bp13 <- ggplot(clust_wb_pig, aes(x = clust_8, y = jab)) +   geom_boxplot() +   
+  labs(title = "Clusters = 8", x = "Clusters", 
+       y = "Wild boar")
+bp14 <- ggplot(clust_wb_pig, aes(x = clust_8, y = jab_in)) +   geom_boxplot() +   
+  labs(title = "Clusters = 8", x = "Clusters", 
+       y = "Wild boar*intensive pig farms")
+bp15 <- ggplot(clust_wb_pig, aes(x = clust_8, y = jab_re)) +   geom_boxplot() +   
+  labs(title = "Clusters = 8", x = "Clusters", 
+       y = "Wild boar*small pig farms")
+bp16 <- ggplot(clust_wb_pig, aes(x = clust_8, y = jab_ex)) +   geom_boxplot() +   
+  labs(title = "Clusters = 8", x = "Clusters", 
+       y = "Wild boar*extensive pig farms")
+
+grid.arrange(bp1,bp2,bp3,bp4,bp5,bp6,bp7,bp8,bp9,bp10,bp11,bp12,bp13,bp14,
+             bp15,bp16, ncol=4)
