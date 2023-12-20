@@ -87,61 +87,62 @@ clust_wb_pig$clust_8 <- as.factor(clust_wb_pig$clust_8)
 #boxplots and compare between different numbers of clusters
 library(gridExtra)
 library(ggplot2)
+
 #Boxplots when we group data in 2 clusters
 bp1 <- ggplot(clust_wb_pig, aes(x = clust_2, y = jab)) + geom_boxplot() +  
-  labs(title = "Clusters = 2", x = "Clusters", 
-       y = "Wild boar")
+  labs(title = "Wild boar") + theme(axis.title.x = element_blank())+
+  theme(axis.title.y = element_blank())
 bp2 <- ggplot(clust_wb_pig, aes(x = clust_2, y = jab_in)) +   geom_boxplot() +   
-  labs(title = "Clusters = 2", x = "Clusters", 
-       y = "Wild boar*intensive pig farms")
+  labs(title = "Wb*Intensive pig farms")+ theme(axis.title.x = element_blank())+
+  theme(axis.title.y = element_blank())
 bp3 <- ggplot(clust_wb_pig, aes(x = clust_2, y = jab_re)) + geom_boxplot() +  
-  labs(title = "Clusters = 2", x = "Clusters", 
-       y = "Wild boar*small pig farms")
+  labs(title = "Wb*Small pig farms")+ theme(axis.title.x = element_blank())+
+  theme(axis.title.y = element_blank())
 bp4 <- ggplot(clust_wb_pig, aes(x = clust_2, y = jab_ex)) +   geom_boxplot() +   
-  labs(title = "Clusters = 2", x = "Clusters", 
-       y = "Wild boar*extensive pig farms")
+  labs(title = "Wb*Extensive pig farms")+ theme(axis.title.x = element_blank())+
+  theme(axis.title.y = element_blank())
 
 #Boxplots when we group data in 4 clusters
 bp5 <- ggplot(clust_wb_pig, aes(x = clust_4, y = jab)) +   geom_boxplot() +   
-  labs(title = "Clusters = 4", x = "Clusters", 
-       y = "Wild boar")
-bp6 <- ggplot(clust_wb_pig, aes(x = clust_4, y = jab_in)) +   geom_boxplot() +   
-  labs(title = "Clusters = 4", x = "Clusters", 
-       y = "Wild boar*intensive pig farms")
+   theme(axis.title.x = element_blank())+
+  theme(axis.title.y = element_blank())
+bp6 <- ggplot(clust_wb_pig, aes(x = clust_4, y = jab_in)) +   geom_boxplot() +
+  theme(axis.title.x = element_blank())+
+  theme(axis.title.y = element_blank())
 bp7 <- ggplot(clust_wb_pig, aes(x = clust_4, y = jab_re)) +   geom_boxplot() +   
-  labs(title = "Clusters = 4", x = "Clusters", 
-       y = "Wild boar*small pig farms")
+   theme(axis.title.x = element_blank())+
+  theme(axis.title.y = element_blank())
 bp8 <- ggplot(clust_wb_pig, aes(x = clust_4, y = jab_ex)) +   geom_boxplot() +   
-  labs(title = "Clusters = 4", x = "Clusters", 
-       y = "Wild boar*extensive pig farms")
+   theme(axis.title.x = element_blank())+
+  theme(axis.title.y = element_blank())
 
 #Boxplots when we group data in 6 clusters
 bp9 <- ggplot(clust_wb_pig, aes(x = clust_6, y = jab)) +   geom_boxplot() +   
-  labs(title = "Clusters = 6", x = "Clusters", 
-       y = "Wild boar")
+   theme(axis.title.x = element_blank())+
+  theme(axis.title.y = element_blank())
 bp10 <- ggplot(clust_wb_pig, aes(x = clust_6, y = jab_in)) +   geom_boxplot() +   
-  labs(title = "Clusters = 6", x = "Clusters", 
-       y = "Wild boar*intensive pig farms")
+   theme(axis.title.x = element_blank())+
+  theme(axis.title.y = element_blank())
 bp11 <- ggplot(clust_wb_pig, aes(x = clust_6, y = jab_re)) +   geom_boxplot() +   
-  labs(title = "Clusters = 6", x = "Clusters", 
-       y = "Wild boar*small pig farms")
+   theme(axis.title.x = element_blank())+
+  theme(axis.title.y = element_blank())
 bp12 <- ggplot(clust_wb_pig, aes(x = clust_6, y = jab_ex)) +   geom_boxplot() +   
-  labs(title = "Clusters = 6", x = "Clusters", 
-       y = "Wild boar*extensive pig farms")
+   theme(axis.title.x = element_blank())+
+  theme(axis.title.y = element_blank())
 
 #Boxplots when we group data in 8 clusters
 bp13 <- ggplot(clust_wb_pig, aes(x = clust_8, y = jab)) +   geom_boxplot() +   
-  labs(title = "Clusters = 8", x = "Clusters", 
-       y = "Wild boar")
+   theme(axis.title.x = element_blank())+
+  theme(axis.title.y = element_blank())
 bp14 <- ggplot(clust_wb_pig, aes(x = clust_8, y = jab_in)) +   geom_boxplot() +   
-  labs(title = "Clusters = 8", x = "Clusters", 
-       y = "Wild boar*intensive pig farms")
+   theme(axis.title.x = element_blank())+
+  theme(axis.title.y = element_blank())
 bp15 <- ggplot(clust_wb_pig, aes(x = clust_8, y = jab_re)) +   geom_boxplot() +   
-  labs(title = "Clusters = 8", x = "Clusters", 
-       y = "Wild boar*small pig farms")
+   theme(axis.title.x = element_blank())+
+  theme(axis.title.y = element_blank())
 bp16 <- ggplot(clust_wb_pig, aes(x = clust_8, y = jab_ex)) +   geom_boxplot() +   
-  labs(title = "Clusters = 8", x = "Clusters", 
-       y = "Wild boar*extensive pig farms")
+   theme(axis.title.x = element_blank())+
+  theme(axis.title.y = element_blank())
 
 grid.arrange(bp1,bp2,bp3,bp4,bp5,bp6,bp7,bp8,bp9,bp10,bp11,bp12,bp13,bp14,
-             bp15,bp16, ncol=4)
+             bp15,bp16, ncol=4, bottom='Clusters')
