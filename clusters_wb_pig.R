@@ -101,7 +101,7 @@ bp4 <- ggplot(clust_wb_pig, aes(x = clust_2, y = jab_ex)) +   geom_boxplot() +
   labs(title = "Clusters = 2", x = "Clusters", 
        y = "Wild boar*extensive pig farms")
 
-#Boxplots when we group data in 2 clusters
+#Boxplots when we group data in 4 clusters
 bp5 <- ggplot(clust_wb_pig, aes(x = clust_4, y = jab)) +   geom_boxplot() +   
   labs(title = "Clusters = 4", x = "Clusters", 
        y = "Wild boar")
@@ -115,7 +115,7 @@ bp8 <- ggplot(clust_wb_pig, aes(x = clust_4, y = jab_ex)) +   geom_boxplot() +
   labs(title = "Clusters = 4", x = "Clusters", 
        y = "Wild boar*extensive pig farms")
 
-#Boxplots when we group data in 2 clusters
+#Boxplots when we group data in 6 clusters
 bp9 <- ggplot(clust_wb_pig, aes(x = clust_6, y = jab)) +   geom_boxplot() +   
   labs(title = "Clusters = 6", x = "Clusters", 
        y = "Wild boar")
@@ -129,7 +129,7 @@ bp12 <- ggplot(clust_wb_pig, aes(x = clust_6, y = jab_ex)) +   geom_boxplot() +
   labs(title = "Clusters = 6", x = "Clusters", 
        y = "Wild boar*extensive pig farms")
 
-#Boxplots when we group data in 2 clusters
+#Boxplots when we group data in 8 clusters
 bp13 <- ggplot(clust_wb_pig, aes(x = clust_8, y = jab)) +   geom_boxplot() +   
   labs(title = "Clusters = 8", x = "Clusters", 
        y = "Wild boar")
